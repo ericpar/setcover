@@ -40,7 +40,7 @@ def get_size(filename):
         return int(num.group(0))
 
 
-def list_files(min_size=0, max_size=sys.maxint):
+def list_files(min_size=0, max_size=sys.maxsize):
     files = sorted((get_size(fn), fn) for fn in os.listdir(DATA_ROOT))
     return [fn for f_size, fn in files
             if fn is not None and min_size <= f_size <=max_size]

@@ -36,6 +36,6 @@ if __name__ == '__main__':
     input_data_file = open(file_location, 'r')
     input_data = ''.join(input_data_file.readlines())
     input_data_file.close()
-    print 'Solving:', file_location
-    print solve_it(input_data, timeout)
+    print('Solving: {}'.format(file_location))
+    print(str(solve_it(input_data, timeout)))
 

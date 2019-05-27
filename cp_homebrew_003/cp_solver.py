@@ -8,7 +8,7 @@ from cp_state import State
 
 class Solution(object):
     def __init__(self, task):
-        self.best_cost = sys.maxint  # Larger than any cost, that we can take
+        self.best_cost = sys.maxsize  # Larger than any cost, that we can take
         self.best_solution = None
         self.set_count = task.set_count
         self.proven_as_optimal = False
@@ -16,7 +16,7 @@ class Solution(object):
 
     def store_result(self, state):
         if state.current_cost < self.best_cost:
-            print self.steps, 'update solution to', state.current_cost  # uncomment this to see the progress
+            print('{} update solution to {}'.format(self.steps, state.current_cost))  # uncomment this to see the progress
             solution = [0] * self.set_count
             state_on_stack = state
             while state_on_stack:
@@ -69,9 +69,9 @@ def deep_search(task, timeout=10*60):
 if __name__ == '__main__':
     from reader import read_input
     for fn in ['sc_157_0', 'sc_330_0', 'sc_1000_11', 'sc_5000_1', 'sc_10000_5', 'sc_10000_2']:
-        print '=== {} ==='.format(fn)
+        print('=== {} ==='.format(fn))
         task = read_input('sc_45_0')
         solution = deep_search(task, timeout=0.5*60)
-        print solution, solution.metrics
+        print("{} {}".format(solution, solution.metrics))
     #from profile import run
     #run('deep_search(task, timeout=120)', sort=2)  # sort - 2 cumtime, 1 - totime

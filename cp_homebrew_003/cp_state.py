@@ -38,7 +38,7 @@ class State(object):
 
         set2items = {s.index: set(s.items) for s in task.sets}
         item2sets = defaultdict(set)
-        for set_idx, set_items in set2items.iteritems():
+        for set_idx, set_items in set2items.items():
             for item_idx in set_items:
                 item2sets[item_idx].add(set_idx)
 
@@ -55,8 +55,8 @@ class State(object):
         return self.create_child(picked_set, decision=True)
 
     def create_child(self, picked_set, decision):
-        set2items = {s: i.copy() for s, i in self.set2items.iteritems()}  # Copy for mutating in child state
-        item2sets = {i: s.copy() for i, s in self.item2sets.iteritems()}  # TODO: Copy is expensive. Can we avoid it?
+        set2items = {s: i.copy() for s, i in self.set2items.items()}  # Copy for mutating in child state
+        item2sets = {i: s.copy() for i, s in self.item2sets.items()}  # TODO: Copy is expensive. Can we avoid it?
         return self.__class__(self.estimator, set2items, item2sets,
                               parent=self, picked_set=picked_set, decision=decision)
 
@@ -113,7 +113,7 @@ class State(object):
 
     def detect_required_sets(self):
         required_sets = set()
-        for item, sets in self.item2sets.iteritems():
+        for item, sets in self.item2sets.items():
             if len(sets) == 1:  # only one set can cover this item
                 required_sets.update(sets)
         return required_sets
